@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SPhL 1991</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      input, button {
+        padding: 8px;
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>The new intern made this site, but it doesn't seem to be working too well... Help us fix it?</h1>
+    <table style="width: 100vw;">
+      <tr>
+        <td style="width: 50%;">
+          <img src="pendulum.gif" style="width: 100%;" />
+          <h2>Welcome to SPhL 1991</h2>
+          <p>We use the latest physics simulations, modern design and web technologies to bring you the best competition possible.</p>
+
+          <h3>THANK OUR PHYSICISTS:</h3>
+          <ol>
+            <li>Albert Einstein</li>
+            <li>Christopher Ong Xianbo</li>
+            <li>Isaac Newton</li>
+          </ol>
+        </td>
+
+        <td style="text-align: center; width: 50%; background-color: cornflowerblue; color: white; padding: 10px;">
+          <img src="bird.gif" width="100" />
+
+          <h2>Announcements!</h2>
+          <p>Only for logged in users...</p>
+          <div id="announcements"></div>
+        </td>
+      </tr>
+    </table>
+
+    <script>
+      async function init() {
+        let announcements = await fetch("/announcements").then(res => res.json()); // not sure why... this is not working :(
+      
+        for (const entry of announcements.announcements) {
+          document.querySelector("#announcements").innerHTML += `<h4>${entry.title}</h4><p>${entry.description}</p><h4>---</h4>`;
+        }
+      }
+
+      init();
+    </script>
+  </body>
+</html>
